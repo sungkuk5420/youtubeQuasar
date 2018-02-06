@@ -50,15 +50,19 @@ export default {
 
   #ytplayer{
     width: 100%;
-    height: 200px;
+    height: 100%;
+    padding-top: 60%;
+    padding-bottom: 60%;
     top: 0;
     bottom: 0;
     position: absolute;
     margin: auto;
+    background-color: black;
   }
   .q-toolbar{
     padding: 0px 20px;
     background-color: red;
+    z-index: 100;
     .q-btn{
       .q-icon{
         margin-right: 0;
