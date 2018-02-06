@@ -10,12 +10,12 @@ export default () => {
           console.log('state.nextPageToken!!! : ' + state.nextPageToken)
 
           let apiURL = ''
-          if (state.searchStr === 'mostPopularLoading') {
+          if (state.searchStr === '') {
             apiURL = `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=${state.loadingNum}&key=${options.apikey}`
           }
           else {
             // search
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${options.apikey}&q=${options.encoded}&type=video&maxResults=${state.loadingNum}`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${options.apikey}&q=${options.encoded}&maxResults=${state.loadingNum}`
           }
           let nextPage = state.nextPageToken !== '' ? '&pageToken=' + state.nextPageToken : ''
           if (nextPage !== '') {

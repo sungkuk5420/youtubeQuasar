@@ -11,8 +11,6 @@
           <q-icon push name="more_vert" >
             <q-popover
               ref="popover2"
-              :anchor="anchor"
-              :self="self"
             >
               <q-list link style="min-width: 100px">
                 <q-item @click="changeLocation('all'), $refs.popover2.close()">
@@ -61,7 +59,7 @@ export default {
     }
   },
   beforeCreate () {
-    this.$store.dispatch(M.CHANGE_SEARCH_STR, 'mostPopularLoading')
+    this.$store.dispatch(M.CHANGE_SEARCH_STR, '')
   }
 }
 </script>
