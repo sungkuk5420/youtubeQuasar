@@ -47,7 +47,8 @@ export default {
       }, 2500)
     },
     videoPlay (videoId) {
-      location.href = 'https://www.youtube.com/watch?v=' + videoId
+      this.$router.push({path: '/playerPage/' + videoId})
+      // location.href = 'https://www.youtube.com/watch?v=' + videoId
     }
   }
 }
