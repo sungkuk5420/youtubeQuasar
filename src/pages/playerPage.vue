@@ -1,16 +1,25 @@
 <template>
-  <iframe id="ytplayer" type="text/html" style=" width: 100%; height: 100%; height: 100%; position: fixed;"
-    v-bind:src="'http://www.youtube.com/embed/'+ $route.params.id + '?autoplay=1&origin=http://example.com'"
-    frameborder="0"/>
+  <div class="">
+    <q-toolbar>
+      <q-btn flat  @click="goSearch" >
+        <q-icon push name="ion-arrow-left-c" ></q-icon>
+      </q-btn>
+    </q-toolbar>
+    <iframe id="ytplayer" type="text/html"
+      v-bind:src="'http://www.youtube.com/embed/'+ $route.params.id + '?autoplay=1&origin=http://example.com'"
+      frameborder="0"/>
+  </div>
 </template>
 
 
 <script>
-import { QBtn } from 'quasar'
+import { QBtn, QToolbar, QIcon } from 'quasar'
 
 export default {
   components: {
-    QBtn
+    QBtn,
+    QToolbar,
+    QIcon
   },
   props: ['id'],
   data () {
@@ -18,7 +27,7 @@ export default {
   },
   methods: {
     goSearch () {
-      this.$router.push({path: '/search'})
+      this.$router.push({path: '/'})
     }
   },
   mounted () {
@@ -27,9 +36,33 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
-.ytp-cued-thumbnail-overlay-image{
-  background-size: contain !important;
-}
+  .ytp-cued-thumbnail-overlay-image{
+    background-size: contain !important;
+  }
+
+  #app{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+  }
+
+  #ytplayer{
+    width: 100%;
+    height: 200px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    margin: auto;
+  }
+  .q-toolbar{
+    padding: 0px 20px;
+    background-color: red;
+    .q-btn{
+      .q-icon{
+        margin-right: 0;
+      }
+    }
+  }
 </style>
