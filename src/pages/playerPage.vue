@@ -44,15 +44,15 @@ export default {
         let imgRatio = imgHeight / imgWidth
 
         playerDom.style.width = windowWidth + 'px'
-        playerDom.style.height = (parseInt(imgHeight) + ((parseInt(windowWidth) - parseInt(imgWidth)) * parseFloat(imgRatio)) ) + 'px'
+        playerDom.style.height = (parseInt(imgHeight) + ((parseInt(windowWidth) - parseInt(imgWidth)) * parseFloat(imgRatio))) + 'px'
         playerDom.classList.remove('heightMode')
         playerDom.classList.add('widthMode')
       }
-      else{
+      else {
         let imgRatio = imgWidth / imgHeight
 
-        playerDom.style.height = (windowHeight-50) + 'px'
-        playerDom.style.width = (parseInt(imgWidth) + ((parseInt((windowHeight-50)) - parseInt(imgHeight)) * parseFloat(imgRatio)) ) + 'px'
+        playerDom.style.height = (windowHeight - 50) + 'px'
+        playerDom.style.width = (parseInt(imgWidth) + ((parseInt((windowHeight - 50)) - parseInt(imgHeight)) * parseFloat(imgRatio))) + 'px'
         playerDom.classList.remove('widthMode')
         playerDom.classList.add('heightMode')
       }
