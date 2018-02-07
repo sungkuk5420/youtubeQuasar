@@ -1,33 +1,31 @@
 <template>
-
-      <q-toolbar>
-        <q-search
-          icon="ion-social-youtube"
-          v-model="text"
-          @change="search"
-          class="searchDiv"
-        />
-        <q-btn flat  @click="" >
-          <q-icon push name="more_vert" >
-            <q-popover
-              ref="popover2"
-            >
-              <q-list link style="min-width: 100px">
-                <q-item @click="changeLocation('all'), $refs.popover2.close()">
-                  <q-item-main label="All" />
-                </q-item>
-                <q-item @click="changeLocation('jp'), $refs.popover2.close()">
-                  <q-item-main label="日本" />
-                </q-item>
-                <q-item @click="changeLocation('ko'), $refs.popover2.close()">
-                  <q-item-main label="한국" />
-                </q-item>
-              </q-list>
-            </q-popover>
-          </q-icon>
-        </q-btn>
-      </q-toolbar>
-
+  <q-toolbar>
+    <q-icon name="ion-social-youtube" style="font-size: 24px; margin:0; margin-left: 10px; margin-right: 20px;" />
+    <q-search
+      v-model="text"
+      @change="search"
+      class="searchDiv"
+    />
+    <q-btn flat>
+      <q-icon push name="more_vert" >
+        <q-popover
+          ref="popover2"
+        >
+          <q-list link style="min-width: 100px">
+            <q-item @click="changeLocation('all'), $refs.popover2.close()">
+              <q-item-main label="All" />
+            </q-item>
+            <q-item @click="changeLocation('jp'), $refs.popover2.close()">
+              <q-item-main label="日本" />
+            </q-item>
+            <q-item @click="changeLocation('ko'), $refs.popover2.close()">
+              <q-item-main label="한국" />
+            </q-item>
+          </q-list>
+        </q-popover>
+      </q-icon>
+    </q-btn>
+  </q-toolbar>
 </template>
 
 <script>
@@ -78,12 +76,15 @@ export default {
   }
 
   .searchDiv .q-input-target{
-    color: white !important;
+    color: black !important;
   }
-  .ion-social-youtube,
-  .material-icons{
-    color: white !important;
-    margin-right: 15px;
+  .ion-social-youtube{
+    color: white ;
+    font-size: 20px;
+    margin-right: 0px;
+  }
+  .q-icon.material-icons{
+    margin-left: 5px;
   }
 </style>
 
@@ -92,12 +93,13 @@ export default {
   .searchDiv{
     background-color: red;
     margin: 0;
-    padding: 10px 0px 10px 10px;
+    padding: 0px 10px 0px 0px;
     position: relative;
-
+    border: 1px solid #ddd;
+    background-color: white;
+    color: black;
 
     ::placeholder {
-      color: white;
       opacity: 1; /* Firefox */
     }
 
