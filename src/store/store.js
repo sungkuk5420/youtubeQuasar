@@ -28,7 +28,9 @@ const getters = {
       return {
         title: item.title,
         body: item.description,
-        id: item.id,
+        id: item.id.videoId || item.id,
+        imgWidth: _.get(item, `thumbnails.medium.width`),
+        imgHeight: _.get(item, `thumbnails.medium.height`),
         thumb: _.get(item, `thumbnails.medium.url`)
       }
     })

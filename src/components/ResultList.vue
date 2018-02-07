@@ -3,7 +3,7 @@
     <q-item
       v-for="item in youTubeResults" :key="item.id">
       <q-item-main class="flex items-center column ">
-        <div class="row item-card-custom" v-on:click="videoPlay(item.id)">
+        <div class="row item-card-custom" v-on:click="videoPlay(item.id, item.imgWidth, item.imgHeight)">
           <div class="col-5"><img :src="item.thumb || ''" class="full-width"></div>
           <div class="col-7" style="word-wrap: break-word;">
             <q-item-tile label><p class="ellipsis">{{ item.title }}</p></q-item-tile>
@@ -46,8 +46,8 @@ export default {
         done()
       }, 2500)
     },
-    videoPlay (videoId) {
-      this.$router.push({path: '/playerPage/' + videoId})
+    videoPlay (videoId, imgWidth, imgHeight) {
+      this.$router.push({ path: '/playerPage/' + videoId + '&' + imgWidth + '&' + imgHeight })
       // location.href = 'https://www.youtube.com/watch?v=' + videoId
     }
   }

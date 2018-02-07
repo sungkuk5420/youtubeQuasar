@@ -15,7 +15,7 @@ export default () => {
           }
           else {
             // search
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${options.apikey}&q=${options.encoded}&maxResults=${state.loadingNum}`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${options.apikey}&q=${options.encoded}&type=video&maxResults=${state.loadingNum}`
           }
           let nextPage = state.nextPageToken !== '' ? '&pageToken=' + state.nextPageToken : ''
           if (nextPage !== '') {
