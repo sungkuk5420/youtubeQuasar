@@ -38,7 +38,8 @@ export default {
       let windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
       let imgWidth = this.$route.params.params.split('&')[1]
       let imgHeight = this.$route.params.params.split('&')[2]
-      let windowRatio = windowWidth / windowHeight
+      let windowHeightWithoutToolbarHiehgt = parseInt((windowHeight - 50))
+      let windowRatio = windowWidth / windowHeightWithoutToolbarHiehgt
       let imgRatio = imgWidth / imgHeight
       if (windowRatio < imgRatio) {
         let imgRatio = imgHeight / imgWidth
@@ -51,8 +52,8 @@ export default {
       else {
         let imgRatio = imgWidth / imgHeight
 
-        playerDom.style.height = (windowHeight - 50) + 'px'
-        playerDom.style.width = (parseInt(imgWidth) + ((parseInt((windowHeight - 50)) - parseInt(imgHeight)) * parseFloat(imgRatio))) + 'px'
+        playerDom.style.height = windowHeightWithoutToolbarHiehgt + 'px'
+        playerDom.style.width = (parseInt(imgWidth) + ((windowHeightWithoutToolbarHiehgt - parseInt(imgHeight)) * parseFloat(imgRatio))) + 'px'
         playerDom.classList.remove('widthMode')
         playerDom.classList.add('heightMode')
       }
@@ -98,7 +99,7 @@ export default {
     &.widthMode{
       bottom: 0;
       margin: auto;
-      top: -50px;
+      top: 0px;
     }
   }
   .q-toolbar{
