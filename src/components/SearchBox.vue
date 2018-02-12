@@ -83,17 +83,14 @@ export default {
     font-size: 20px;
     margin-right: 0px;
   }
-  .q-icon.material-icons{
-    margin-left: 5px;
-  }
+
 </style>
 
 <style lang="scss" scoped>
-
   .searchDiv{
     background-color: red;
     margin: 0;
-    padding: 0px 10px 0px 0px;
+    padding: 0px 10px 0px 5px;
     position: relative;
     border: 1px solid #ddd;
     background-color: white;

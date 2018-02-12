@@ -1,27 +1,25 @@
 import { M } from './types'
 import ajaxActions from './ajaxActions'
 import _ from 'lodash'
+import router from 'router'
 
 const state = {
   searchStr: '',
   nextPageToken: '',
   loadingNum: 30,
   location: '',
-  searchResults: [
-    { id: 0, title: 'データ1', body: 'データ1の内容です。123' },
-    { id: 1, title: 'データ2', body: 'データ2の内容です。456' },
-    { id: 2, title: 'データ3', body: 'データ3の内容です。789' }
-  ],
-  youTubeResults: []
+  youTubeResults: [],
+  playerSettings: {
+    videoId: '',
+    videoWidth: '',
+    videoHeight: '',
+    iframeWidth: '',
+    iframeHeight: '',
+    respomsiveMode: ''
+  }
 }
 
 const getters = {
-  getSearchResults () {
-    // console.log('state.searchResults= ', state.searchResults)
-    return state.searchResults.filter(function (item) {
-      return item.title.indexOf(state.searchStr) !== -1 || item.body.indexOf(state.searchStr) !== -1
-    })
-  },
   getYouTubeResults () {
     console.log(state.youTubeResults)
     return state.youTubeResults.map((item) => {
@@ -29,8 +27,8 @@ const getters = {
         title: item.title,
         body: item.description,
         id: item.id.videoId || item.id,
-        imgWidth: _.get(item, `thumbnails.medium.width`),
-        imgHeight: _.get(item, `thumbnails.medium.height`),
+        videoWidth: _.get(item, `thumbnails.medium.width`),
+        videoHeight: _.get(item, `thumbnails.medium.height`),
         thumb: _.get(item, `thumbnails.medium.url`)
       }
     })
@@ -38,6 +36,9 @@ const getters = {
   getSearchStr () {
     // console.log('state.searchResults= ', state.searchResults)
     return state.searchStr
+  },
+  getPlayerSettings () {
+    return state.playerSettings
   }
 }
 
@@ -65,6 +66,16 @@ const actions = {
   [M.CHANGE_LOCATION] ({ commit }, locationStr) {
     // locationStr ko, jp, all
     commit(M.CHANGE_LOCATION, locationStr)
+  },
+
+  [M.OPEN_PLAYER] ({ commit }, settings) {
+    console.log('settings= ', settings)
+    commit(M.OPEN_PLAYER, settings)
+  },
+
+  [M.CHANGE_PLAYER_SIZE] ({ commit }, settings) {
+    console.log('settings= ', settings)
+    commit(M.CHANGE_PLAYER_SIZE, settings)
   }
 }
 
@@ -130,6 +141,20 @@ const mutations = {
     state.loadingNum = 30
     console.log('changelocation !!')
     this.dispatch(M.CHANGE_SEARCH_RESULTS)
+  },
+
+  [M.OPEN_PLAYER] (state, settings) {
+    console.log('settings= ', settings)
+    state.playerSettings = settings
+    console.log('mutation commit: [M.OPEN_PLAYER] state.playerSettings= ', state.playerSettings)
+    router.push({path: '/player'})
+  },
+
+  [M.CHANGE_PLAYER_SIZE] (state, settings) {
+    console.log('settings= ', settings)
+    state.playerSettings.iframeWidth = settings.iframeWidth
+    state.playerSettings.iframeHeight = settings.iframeHeight
+    state.playerSettings.respomsiveMode = settings.respomsiveMode
   }
 }
 

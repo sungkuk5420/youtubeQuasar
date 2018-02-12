@@ -1,21 +1,26 @@
 <template>
   <!-- if you want automatic padding use "layout-padding" class -->
-  <div class="">
+  <q-layout>
     <!-- your content -->
-    <search-box></search-box>
+    <q-fixed-position corner="top" :offset="[0, 0]">
+      <search-box></search-box>
+    </q-fixed-position>
     <result-list></result-list>
-  </div>
+  </q-layout>
 </template>
 
 <script>
 
 import SearchBox from '../components/SearchBox.vue'
 import ResultList from '../components/ResultList.vue'
+import { QLayout, QFixedPosition } from 'quasar'
 
 export default {
   components: {
     SearchBox,
-    ResultList
+    ResultList,
+    QLayout,
+    QFixedPosition
   },
   data () {
     return {}
@@ -23,5 +28,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .z-fixed.fixed-top{
+    z-index: 1;
+  }
 </style>

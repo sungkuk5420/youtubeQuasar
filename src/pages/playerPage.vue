@@ -7,15 +7,17 @@
     </q-toolbar>
     <div class="ytplayerDiv">
       <iframe id="ytplayer" type="text/html"
-        v-bind:src="'http://www.youtube.com/embed/'+ $route.params.params.split('&')[0] + '?autoplay=1&origin=http://example.com'"
-        frameborder="0"/>
+        v-bind:src="getPlayerUrl()"
+        frameborder="0" :style="{ width: `${this.playerSettings.iframeWidth}`, height: `${this.playerSettings.iframeHeight}`} " :class="`${this.playerSettings.respomsiveMode}`" />
     </div>
   </div>
 </template>
 
 
 <script>
+import { M } from '../store/types'
 import { QBtn, QToolbar, QIcon } from 'quasar'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -23,7 +25,11 @@ export default {
     QToolbar,
     QIcon
   },
-  props: ['id', 'imgWidth', 'imgHeight'],
+  computed: {
+    ...mapGetters({
+      playerSettings: 'getPlayerSettings'
+    })
+  },
   data () {
     return {}
   },
@@ -31,36 +37,47 @@ export default {
     goSearch () {
       this.$router.push({path: '/'})
     },
+    getPlayerUrl () {
+      return `http://www.youtube.com/embed/${this.playerSettings.videoId || ''}?autoplay=1`
+    },
     handleResize (event) {
       console.log('resize!!')
-      let playerDom = document.getElementById('ytplayer')
       let windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
       let windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-      let imgWidth = this.$route.params.params.split('&')[1]
-      let imgHeight = this.$route.params.params.split('&')[2]
+      let videoWidth = `${this.playerSettings.videoWidth}`
+      let videoHeight = `${this.playerSettings.videoHeight}`
       let windowHeightWithoutToolbarHiehgt = parseInt((windowHeight - 50))
       let windowRatio = windowWidth / windowHeightWithoutToolbarHiehgt
-      let imgRatio = imgWidth / imgHeight
-      if (windowRatio < imgRatio) {
-        let imgRatio = imgHeight / imgWidth
+      let videoRatio = videoWidth / videoHeight
+      let respomsiveMode = ''
+      let iframeWidth = ''
+      let iframeHeight = ''
 
-        playerDom.style.width = windowWidth + 'px'
-        playerDom.style.height = (parseInt(imgHeight) + ((parseInt(windowWidth) - parseInt(imgWidth)) * parseFloat(imgRatio))) + 'px'
-        playerDom.classList.remove('heightMode')
-        playerDom.classList.add('widthMode')
+      if (windowRatio < videoRatio) {
+        let videoRatio = videoHeight / videoWidth
+
+        iframeWidth = windowWidth + 'px'
+        iframeHeight = (parseInt(videoHeight) + ((parseInt(windowWidth) - parseInt(videoWidth)) * parseFloat(videoRatio))) + 'px'
+        respomsiveMode = 'widthMode'
       }
       else {
-        let imgRatio = imgWidth / imgHeight
+        let videoRatio = videoWidth / videoHeight
 
-        playerDom.style.height = windowHeightWithoutToolbarHiehgt + 'px'
-        playerDom.style.width = (parseInt(imgWidth) + ((windowHeightWithoutToolbarHiehgt - parseInt(imgHeight)) * parseFloat(imgRatio))) + 'px'
-        playerDom.classList.remove('widthMode')
-        playerDom.classList.add('heightMode')
+        iframeHeight = windowHeightWithoutToolbarHiehgt + 'px'
+        iframeWidth = (parseInt(videoWidth) + ((windowHeightWithoutToolbarHiehgt - parseInt(videoHeight)) * parseFloat(videoRatio))) + 'px'
+        respomsiveMode = 'heightMode'
       }
+
+      console.log(iframeWidth)
+      const settings = {
+        iframeWidth: iframeWidth,
+        iframeHeight: iframeHeight,
+        respomsiveMode: respomsiveMode
+      }
+      this.$store.dispatch(M.CHANGE_PLAYER_SIZE, settings)
     }
   },
   mounted () {
-    console.log('aaa params!!' + JSON.stringify(this.$route.params))
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   }
