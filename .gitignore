@@ -1,7 +1,4 @@
-.DS_Store
-.thumbs.db
 node_modules/
-dist/
-npm-debug.log*
-cordova/platforms
-cordova/plugins
+.idea/
+backend/frontend/firebaseKey.js
+backend/originalsource
