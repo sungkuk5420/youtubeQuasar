@@ -112,20 +112,20 @@ const mutations = {
     switch (locationStr) {
       case 'ko' :
         console.log(state.searchStr)
-        // if (state.searchStr !== '') {
-        // changeLocation = '&location=36.868730, 127.508638&locationRadius=400km'
-        // }
-        // else {
-        changeLocation = '&regionCode=KR'
-        // }
+        if (state.searchStr !== '') {
+          changeLocation = '&location=36.868730, 127.508638&locationRadius=400km'
+        }
+        else {
+          changeLocation = '&regionCode=KR'
+        }
         break
       case 'jp' :
-        // if (state.searchStr !== '') {
-        // changeLocation = '&location=35.053765, 140.310276&locationRadius=999km'
-        // }
-        // else {
-        changeLocation = '&regionCode=JP'
-        // }
+        if (state.searchStr !== '') {
+          changeLocation = '&location=35.053765, 140.310276&locationRadius=999km'
+        }
+        else {
+          changeLocation = '&regionCode=JP'
+        }
         break
       case 'all' :
         changeLocation = ''
