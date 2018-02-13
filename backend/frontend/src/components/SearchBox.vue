@@ -57,7 +57,9 @@ export default {
     }
   },
   beforeCreate () {
-    this.$store.dispatch(M.CHANGE_SEARCH_STR, '')
+    if (this.$store.getters.getYouTubeResults.length === 0) {
+      this.$store.dispatch(M.CHANGE_SEARCH_STR, '')
+    }
   }
 }
 </script>

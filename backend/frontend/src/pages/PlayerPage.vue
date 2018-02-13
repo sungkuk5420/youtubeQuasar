@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     goSearch () {
-      this.$router.push({path: '/'})
+      this.$router.history.go(-1)
     },
     getPlayerUrl () {
       return `http://www.youtube.com/embed/${this.playerSettings.videoId || ''}?autoplay=1`
