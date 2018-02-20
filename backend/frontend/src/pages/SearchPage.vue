@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .z-fixed.fixed-top{
+  .fixed-top{
     z-index: 1;
   }
 </style>
