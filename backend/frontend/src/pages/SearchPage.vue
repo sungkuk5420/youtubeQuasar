@@ -2,9 +2,7 @@
   <!-- if you want automatic padding use "layout-padding" class -->
   <q-layout>
     <!-- your content -->
-    <q-fixed-position corner="top" :offset="[0, 0]">
-      <search-box></search-box>
-    </q-fixed-position>
+    <search-box class="fixed-top" data-role="header" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="false" data-transition="none"></search-box>
     <result-list></result-list>
   </q-layout>
 </template>
