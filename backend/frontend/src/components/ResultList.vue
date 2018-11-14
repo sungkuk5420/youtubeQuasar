@@ -76,6 +76,39 @@ export default {
 }
 </script>
 
+<style lang="scss">
+@media screen and (min-width: 992px) {
+  .q-list.q-list-link{
+    .q-item{
+      display: block;
+      width: 100%;
+    }
+  }
+  .q-item{
+    display: inline-flex;
+    width: 33.3333%;
+  }
+  .item-card-custom{
+    width: auto;
+    flex-direction: column;
+  }
+  .col-5{
+    display: block;
+    width: 100%;
+    flex: inherit;
+    max-width: inherit !important;
+    cursor: pointer;
+  }
+  .col-7{
+    width: 100%;
+    max-width: inherit;
+    display: block;
+    max-width: inherit !important;
+    cursor: pointer;
+  }
+}
+
+</style>
 <style lang="scss" scoped>
 
 .item-card-custom{

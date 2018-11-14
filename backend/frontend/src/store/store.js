@@ -7,7 +7,7 @@ const state = {
   searchStr: '',
   nextPageToken: '',
   loadingNum: 30,
-  location: '',
+  location: '&regionCode=KR',
   youTubeResults: [],
   playerSettings: {
     videoId: '',
@@ -81,7 +81,7 @@ const actions = {
 
 const mutations = {
   [M.CHANGE_SEARCH_STR] (state, str) {
-    state.loadingNum = 10
+    state.loadingNum = 30
     if (str !== state.searchStr) {
       state.youTubeResults = []
       state.nextPageToken = ''

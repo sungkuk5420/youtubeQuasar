@@ -47,6 +47,8 @@ export default {
       text: ''
     }
   },
+  mounted () {
+  },
   methods: {
     search () {
       // console.log(this.text)
@@ -58,6 +60,7 @@ export default {
   },
   beforeCreate () {
     if (this.$store.getters.getYouTubeResults.length === 0) {
+      // this.$store.dispatch(M.CHANGE_LOCATION, 'ko')
       this.$store.dispatch(M.CHANGE_SEARCH_STR, '')
     }
   }
