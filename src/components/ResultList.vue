@@ -97,6 +97,7 @@ export default {
           thisObj.timer = null;
           if (thisObj.$store.getters.getYouTubeResults.length !== 0) {
             if (!thisObj.$store.getters.getNextPageToken) {
+              done();
               return false;
             }
             thisObj.$store.dispatch(
