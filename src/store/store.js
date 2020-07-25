@@ -20,7 +20,7 @@ const state = {
 }
 
 const getters = {
-  getYouTubeResults () {
+  getYouTubeResults() {
     console.log(state.youTubeResults)
     return state.youTubeResults.map((item) => {
       return {
@@ -33,22 +33,22 @@ const getters = {
       }
     })
   },
-  getSearchStr () {
+  getSearchStr() {
     // console.log('state.searchResults= ', state.searchResults)
     return state.searchStr
   },
-  getPlayerSettings () {
+  getPlayerSettings() {
     return state.playerSettings
   }
 }
 
 const actions = {
-  [M.CHANGE_SEARCH_STR] ({ commit }, str) {
+  [M.CHANGE_SEARCH_STR]({ commit }, str) {
     // console.log('store.actions:[M.CHANGE_SEARCH_STR] str= ', str)
     commit(M.CHANGE_SEARCH_STR, str)
     this.dispatch(M.CHANGE_SEARCH_RESULTS)
   },
-  [M.CHANGE_SEARCH_RESULTS] ({ commit }) {
+  [M.CHANGE_SEARCH_RESULTS]({ commit }) {
     ajaxActions().queryYouTubeData(
       state,
       (results) => {
@@ -63,24 +63,24 @@ const actions = {
     )
   },
 
-  [M.CHANGE_LOCATION] ({ commit }, locationStr) {
+  [M.CHANGE_LOCATION]({ commit }, locationStr) {
     // locationStr ko, jp, all
     commit(M.CHANGE_LOCATION, locationStr)
   },
 
-  [M.OPEN_PLAYER] ({ commit }, settings) {
+  [M.OPEN_PLAYER]({ commit }, settings) {
     console.log('settings= ', settings)
     commit(M.OPEN_PLAYER, settings)
   },
 
-  [M.CHANGE_PLAYER_SIZE] ({ commit }, settings) {
+  [M.CHANGE_PLAYER_SIZE]({ commit }, settings) {
     console.log('settings= ', settings)
     commit(M.CHANGE_PLAYER_SIZE, settings)
   }
 }
 
 const mutations = {
-  [M.CHANGE_SEARCH_STR] (state, str) {
+  [M.CHANGE_SEARCH_STR](state, str) {
     state.loadingNum = 30
     if (str !== state.searchStr) {
       state.youTubeResults = []
@@ -91,7 +91,7 @@ const mutations = {
 
     // console.log('mutation commit: [M.CHANGE_SEARCH_STR] state.searchStr= ', state.searchStr)
   },
-  [M.CHANGE_SEARCH_RESULTS] (state, res) {
+  [M.CHANGE_SEARCH_RESULTS](state, res) {
     // console.log('res.data.items= ', res.data.items)
     console.log(res)
     let newYouTubeResults = res.data.items.map((item) => {
@@ -106,11 +106,11 @@ const mutations = {
     // console.log('mutation commit: [M.CHANGE_SEARCH_RESULTS] state.youTubeResults= ', state.youTubeResults)
   },
 
-  [M.CHANGE_LOCATION] (state, locationStr) {
+  [M.CHANGE_LOCATION](state, locationStr) {
     // locationStr ko, jp, all
     let changeLocation = ''
     switch (locationStr) {
-      case 'ko' :
+      case 'ko':
         console.log(state.searchStr)
         if (state.searchStr !== '') {
           changeLocation = '&location=36.868730, 127.508638&locationRadius=400km'
@@ -119,7 +119,7 @@ const mutations = {
           changeLocation = '&regionCode=KR'
         }
         break
-      case 'jp' :
+      case 'jp':
         if (state.searchStr !== '') {
           changeLocation = '&location=35.053765, 140.310276&locationRadius=999km'
         }
@@ -127,10 +127,10 @@ const mutations = {
           changeLocation = '&regionCode=JP'
         }
         break
-      case 'all' :
+      case 'all':
         changeLocation = ''
         break
-      default :
+      default:
         changeLocation = ''
         break
     }
@@ -143,14 +143,14 @@ const mutations = {
     this.dispatch(M.CHANGE_SEARCH_RESULTS)
   },
 
-  [M.OPEN_PLAYER] (state, settings) {
+  [M.OPEN_PLAYER](state, settings) {
     console.log('settings= ', settings)
     state.playerSettings = settings
     console.log('mutation commit: [M.OPEN_PLAYER] state.playerSettings= ', state.playerSettings)
-    router.push({path: '/player'})
+    router.push({ path: '/player' })
   },
 
-  [M.CHANGE_PLAYER_SIZE] (state, settings) {
+  [M.CHANGE_PLAYER_SIZE](state, settings) {
     console.log('settings= ', settings)
     state.playerSettings.iframeWidth = settings.iframeWidth
     state.playerSettings.iframeHeight = settings.iframeHeight

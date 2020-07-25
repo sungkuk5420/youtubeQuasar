@@ -1,11 +1,11 @@
 import axios from 'axios'
 export default () => {
   return {
-    queryYouTubeData (state, cSuccess, cError) {
+    queryYouTubeData(state, cSuccess, cError) {
       let options = {
-        apikey: 'AIzaSyBTH4AgSAIAoyXu8XwzkKlsLdVuJxMPS0Q',
+        apikey: 'AIzaSyC0pHtfxgsPGzByebMd5ILjc4SqkFZXpBg',
         encoded: encodeURI(state.searchStr),
-        url () {
+        url() {
           console.log('state.searchStr!!! : ' + state.searchStr)
           console.log('state.nextPageToken!!! : ' + state.nextPageToken)
 

@@ -1,13 +1,7 @@
-# Express Generator with Vue-CLI
-
+# youtube デモ　アプリ
 ```
-git clone https://github.com/ChangJoo-Park/express-generator-with-vue-cli sample-app
-cd sample-app
-cd backend 
-npm install 
-cd ..
-cd frontend
+git clone https://github.com/sungkuk5420/youtubeQuasar.git
+cd youtubeQuasar
 npm install
-cd ..
-npm start
+npm run dev
 ```
