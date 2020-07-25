@@ -1,9 +1,9 @@
 {
-  "name": "youtube clone",
-  "productName": "youtube clone",
+  "name": "Youtube Clone",
+  "productName": "Youtube Clone",
   "version": "0.0.1",
   "private": true,
-  "description": "youtube clone",
+  "description": "Youtube Clone",
   "author": "Your Name <your@email.com>",
   "scripts": {
     "prebuild": "npm i -g quasar-cli@0.6.5",
