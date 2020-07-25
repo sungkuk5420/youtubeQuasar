@@ -1,9 +1,9 @@
 {
-  "name": "quasar-app",
-  "productName": "Quasar App",
+  "name": "youtube clone",
+  "productName": "youtube clone",
   "version": "0.0.1",
   "private": true,
-  "description": "A Quasar App",
+  "description": "youtube clone",
   "author": "Your Name <your@email.com>",
   "scripts": {
     "prebuild": "npm i -g quasar-cli@0.6.5",
