@@ -6,6 +6,7 @@
   "description": "A Quasar App",
   "author": "Your Name <your@email.com>",
   "scripts": {
+    "prebuild": "npm i -g quasar-cli@0.6.5",
     "clean": "node build/script.clean.js",
     "dev": "node build/script.dev.js",
     "build": "node build/script.build.js",
