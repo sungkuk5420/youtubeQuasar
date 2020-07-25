@@ -3,7 +3,7 @@ export default () => {
   return {
     queryYouTubeData(state, cSuccess, cError) {
       let options = {
-        apikey: 'AIzaSyC0pHtfxgsPGzByebMd5ILjc4SqkFZXpBg',
+        apikey: 'AIzaSyBL68pxfwaGiWUWDImb8Z-hwTaq-YaPkzo',
         encoded: encodeURI(state.searchStr),
         url() {
           console.log('state.searchStr!!! : ' + state.searchStr)
@@ -17,7 +17,7 @@ export default () => {
             // search
             apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${options.apikey}&q=${options.encoded}&type=video&maxResults=${state.loadingNum}`
           }
-          let nextPage = state.nextPageToken !== '' ? '&pageToken=' + state.nextPageToken : ''
+          let nextPage = state.nextPageToken ? '&pageToken=' + state.nextPageToken : ''
           if (nextPage !== '') {
             apiURL += nextPage
           }
@@ -30,6 +30,10 @@ export default () => {
           return apiURL
         }
       }
+      if (state.youTubeResults.length != 0 && !state.nextPageToken) {
+        return false;
+      }
+      console.log("api call!!")
       let api = axios.create()
       // console.log('url= ', options.url())
       axios.all(

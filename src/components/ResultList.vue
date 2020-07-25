@@ -21,7 +21,12 @@
           </div>
         </q-item-main>
       </q-item>
-      <div slot="message" class="row justify-center" style="margin-bottom: 50px;">
+      <div
+        slot="message"
+        v-show="nextPageToken"
+        class="row justify-center"
+        style="margin-bottom: 50px;"
+      >
         <q-spinner-dots :size="40" />
       </div>
       <q-fixed-position corner="bottom-right" :offset="[18, 18]">
@@ -76,24 +81,32 @@ export default {
   computed: {
     ...mapGetters({
       youTubeResults: "getYouTubeResults",
+      nextPageToken: "getNextPageToken",
     }),
   },
   data() {
-    return {};
+    return {
+      timer: null,
+    };
   },
   methods: {
     refresher(index, done) {
-      console.log(index);
       let thisObj = this;
-      setTimeout(() => {
-        if (thisObj.$store.getters.getYouTubeResults.length !== 0) {
-          thisObj.$store.dispatch(
-            M.CHANGE_SEARCH_STR,
-            thisObj.$store.getters.getSearchStr
-          );
-        }
-        done();
-      }, 2500);
+      if (!thisObj.timer) {
+        thisObj.timer = setTimeout(function () {
+          thisObj.timer = null;
+          if (thisObj.$store.getters.getYouTubeResults.length !== 0) {
+            if (!thisObj.$store.getters.getNextPageToken) {
+              return false;
+            }
+            thisObj.$store.dispatch(
+              M.CHANGE_SEARCH_STR,
+              thisObj.$store.getters.getSearchStr
+            );
+          }
+          done();
+        }, 2000);
+      }
     },
     openPlayer(videoId, videoWidth, videoHeight) {
       const settings = {
@@ -105,7 +118,6 @@ export default {
         iframeHeight: "",
       };
       this.$store.dispatch(M.OPEN_PLAYER, settings);
-      this.$rout;
     },
   },
   directives: {

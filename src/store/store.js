@@ -39,6 +39,9 @@ const getters = {
   },
   getPlayerSettings() {
     return state.playerSettings
+  },
+  getNextPageToken() {
+    return state.nextPageToken
   }
 }
 
@@ -147,7 +150,7 @@ const mutations = {
     console.log('settings= ', settings)
     state.playerSettings = settings
     console.log('mutation commit: [M.OPEN_PLAYER] state.playerSettings= ', state.playerSettings)
-    router.push({ path: '/player' })
+    router.push({ path: `/player?playerId=${state.playerSettings.videoId}` })
   },
 
   [M.CHANGE_PLAYER_SIZE](state, settings) {

@@ -43,8 +43,9 @@ export default {
       this.$router.history.go(-1);
     },
     getPlayerUrl() {
+      console.log();
       return `https://www.youtube.com/embed/${
-        this.playerSettings.videoId || ""
+        this.$router.currentRoute.query.playerId || ""
       }?autoplay=1`;
     },
     handleResize(event) {
