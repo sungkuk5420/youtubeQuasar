@@ -1,9 +1,9 @@
 {
-  "name": "Youtube-Clone",
-  "productName": "Youtube Clone",
+  "name": "most-popular-video",
+  "productName": "most popular video by country",
   "version": "0.0.1",
   "private": true,
-  "description": "Youtube Clone",
+  "description": "most popular video by country",
   "author": "Your Name <your@email.com>",
   "scripts": {
     "prebuild": "npm i -g quasar-cli@0.6.5",

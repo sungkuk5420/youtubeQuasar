@@ -10,13 +10,13 @@
         <q-popover ref="popover2">
           <q-list link style="min-width: 100px">
             <q-item @click="changeLocation('all'), $refs.popover2.close()">
-              <q-item-main label="All" />
+              <q-item-main label="All Countries" />
             </q-item>
             <q-item @click="changeLocation('jp'), $refs.popover2.close()">
-              <q-item-main label="日本" />
+              <q-item-main label="Japanese" />
             </q-item>
             <q-item @click="changeLocation('ko'), $refs.popover2.close()">
-              <q-item-main label="한국" />
+              <q-item-main label="South Korea" />
             </q-item>
           </q-list>
         </q-popover>
@@ -60,7 +60,7 @@ export default {
       this.$store.dispatch(M.CHANGE_SEARCH_STR, this.text);
     },
     changeLocation(locationStr) {
-      console.log(this.$refs.infiniteScroll);
+      cc;
       this.$store.dispatch(M.CHANGE_LOCATION, locationStr);
     },
   },
