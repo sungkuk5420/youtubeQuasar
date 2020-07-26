@@ -13,7 +13,7 @@
               <q-item-main label="All Countries" />
             </q-item>
             <q-item @click="changeLocation('jp'), $refs.popover2.close()">
-              <q-item-main label="Japanese" />
+              <q-item-main label="Japan" />
             </q-item>
             <q-item @click="changeLocation('ko'), $refs.popover2.close()">
               <q-item-main label="South Korea" />
