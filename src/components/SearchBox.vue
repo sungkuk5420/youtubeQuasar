@@ -60,7 +60,6 @@ export default {
       this.$store.dispatch(M.CHANGE_SEARCH_STR, this.text);
     },
     changeLocation(locationStr) {
-      cc;
       this.$store.dispatch(M.CHANGE_LOCATION, locationStr);
     },
   },
